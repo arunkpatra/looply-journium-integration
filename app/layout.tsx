@@ -22,7 +22,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Looply - Habit & Wellness Tracker",
   description: "Build better habits, track your wellness journey",
-  generator: "journium.app",
+  generator: "looply.app",
   icons: {
     icon: [
       {
