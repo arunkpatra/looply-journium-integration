@@ -4,6 +4,8 @@ import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { StoreProvider } from "@/lib/store"
 import { Toaster } from "sonner"
+import { NextJourniumProvider } from "@journium/nextjs"
+import { JourniumVerification } from "@/components/journium-verification"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -50,12 +52,22 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className={`${geist.className} antialiased`}>
-
+        <NextJourniumProvider
+          config={{
+            publishableKey: process.env.NEXT_PUBLIC_JOURNIUM_PUBLISHABLE_KEY!,
+            options: {
+              debug: process.env.NODE_ENV === "development",
+              autoTrackPageviews: true,
+              autocapture: true,
+            },
+          }}
+        >
           <StoreProvider>
             <Toaster />
             {children}
           </StoreProvider>
-
+          {process.env.NODE_ENV === "development" && <JourniumVerification />}
+        </NextJourniumProvider>
       </body>
     </html>
   )
