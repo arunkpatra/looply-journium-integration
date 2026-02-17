@@ -9,12 +9,10 @@ import { getStreak, getTodayLog, getWeekProgress } from "@/lib/utils-habits"
 import { Flame, TrendingUp, Zap, Crown, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { useTrackEvent } from "@journium/nextjs"
 
 export default function HomePage() {
   const { user, habits, logs } = useStore()
   const [showPaywall, setShowPaywall] = useState(false)
-  const trackEvent = useTrackEvent()
 
   const activeHabits = habits.filter((h) => h.active)
   const weekProgress = getWeekProgress(activeHabits, logs)
@@ -28,7 +26,6 @@ export default function HomePage() {
 
   const handleUpgradeClick = () => {
     setShowPaywall(true)
-    trackEvent("paywall_shown", { trigger: "upgrade_card" })
   }
 
   if (activeHabits.length === 0) {

@@ -2,7 +2,6 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-import { NextJourniumProvider } from '@journium/nextjs'
 import { StoreProvider } from "@/lib/store"
 import { Toaster } from "sonner"
 
@@ -51,12 +50,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className={`${geist.className} antialiased`}>
-        <NextJourniumProvider>
+
           <StoreProvider>
             <Toaster />
             {children}
           </StoreProvider>
-        </NextJourniumProvider>
+
       </body>
     </html>
   )

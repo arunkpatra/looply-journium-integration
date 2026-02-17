@@ -6,14 +6,12 @@ import { Badge } from "@/components/ui/badge"
 import { PaywallDialog } from "@/components/paywall-dialog"
 import { useStore } from "@/lib/store"
 import { getStreak } from "@/lib/utils-habits"
-import { useTrackEvent } from "@journium/nextjs"
 import { Crown, TrendingUp, Calendar, Target, Lock } from "lucide-react"
 import { useState } from "react"
 
 export default function InsightsPage() {
   const { user, habits, logs } = useStore()
   const [showPaywall, setShowPaywall] = useState(false)
-  const trackEvent = useTrackEvent()
   const activeHabits = habits.filter((h) => h.active)
 
   // Calculate week data
@@ -75,7 +73,6 @@ export default function InsightsPage() {
 
   const handleUnlockProInsights = () => {
     setShowPaywall(true)
-    trackEvent("paywall_shown", { trigger: "pro_insights" })
   }
 
   return (

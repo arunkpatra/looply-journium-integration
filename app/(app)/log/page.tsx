@@ -8,7 +8,6 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { useStore } from "@/lib/store"
 import { getTodayLog } from "@/lib/utils-habits"
-import { useTrackEvent } from "@journium/nextjs"
 import { CheckCircle2, Sparkles } from "lucide-react"
 import { useState, useEffect, useMemo } from "react"
 import { useRouter } from "next/navigation"
@@ -16,7 +15,6 @@ import { useRouter } from "next/navigation"
 export default function LogPage() {
   const { habits, logs, addLog, updateLog } = useStore()
   const router = useRouter()
-  const trackEvent = useTrackEvent()
   const activeHabits = useMemo(() => habits.filter((h) => h.active), [habits])
   const today = new Date().toISOString().split("T")[0]
 
@@ -45,14 +43,12 @@ export default function LogPage() {
 
     if (log) {
       updateLog(log.id, { completed: !log.completed })
-      trackEvent("habit_logged", { habitId })
     } else {
       addLog({
         habitId,
         date: today,
         completed: true,
       })
-      trackEvent("habit_logged", { habitId })
     }
   }
 
@@ -81,7 +77,6 @@ export default function LogPage() {
 
     if (allCompleted) {
       setShowCelebration(true)
-      trackEvent("day_completed")
     }
   }
 
