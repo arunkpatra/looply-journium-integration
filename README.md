@@ -14,7 +14,7 @@ A modern, beautiful habit tracking application built with Next.js App Router, Ty
 ## Prerequisites
 
 - Node.js 18+ installed
-- npm, yarn, or pnpm package manager
+- pnpm package manager
 
 ## Getting Started
 
@@ -28,21 +28,12 @@ cd looply
 ### 2. Install Dependencies
 
 ```bash
-npm install
-# or
-yarn install
-# or
 pnpm install
 ```
 
 ### 3. Run the Development Server
 
 ```bash
-# Start the development server (default port 3000)
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
 ```
 
@@ -52,9 +43,7 @@ The server will start at **http://localhost:3000**
 <summary>Using a custom port?</summary>
 
 ```bash
-npm run dev -- -p 3001
 pnpm dev -- -p 3001
-yarn dev -p 3001  # Note: yarn doesn't use -- before flags
 ```
 </details>
 
@@ -74,7 +63,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Build errors?
 - Delete `node_modules` and `.next` cache, then reinstall dependencies:
   ```bash
-  rm -rf node_modules .next && npm install
+  rm -rf node_modules .next && pnpm install
   ```
 - Ensure Node.js version is 18+:
   ```bash
@@ -84,7 +73,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 ### Port already in use?
 - Use a different port:
   ```bash
-  npm run dev -- -p 3001
+  pnpm dev -- -p 3001
   ```
 - Or stop the process using port 3000:
   ```bash
@@ -122,7 +111,7 @@ looply/
 
 ## Available Scripts
 
-- `npm run dev` - Start the development server
-- `npm run build` - Build the application for production
-- `npm run start` - Start the production server
-- `npm run lint` - Run ESLint to check for code issues
+- `pnpm dev` - Start the development server
+- `pnpm build` - Build the application for production
+- `pnpm start` - Start the production server
+- `pnpm lint` - Run ESLint to check for code issues

@@ -44,7 +44,6 @@ export default function SettingsPage() {
 
   const handleResetData = () => {
     resetData()
-    reset()
     toast.success("Demo data reset")
     router.push("/auth/sign-in")
   }

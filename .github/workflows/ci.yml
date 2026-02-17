@@ -23,7 +23,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
           run_install: false
 
       - name: Get pnpm store directory
@@ -46,7 +46,5 @@ jobs:
         run: pnpm lint
 
       - name: Build project
-        env:
-          NEXT_PUBLIC_JOURNIUM_PUBLISHABLE_KEY: ${{ vars.JOURNIUM_PUBLISHABLE_KEY || 'your_journium_publishable_key_here' }}
         run: pnpm build
 
