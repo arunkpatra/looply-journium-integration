@@ -11,6 +11,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "sonner"
+import { useTrackEvent, useIdentify } from "@journium/nextjs"
 
 export default function SignUpPage() {
   const router = useRouter()
@@ -19,10 +20,20 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  
+  // Journium hooks for tracking events
+  const trackEvent = useTrackEvent()
+  const identify = useIdentify()
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+
+    // Track sign up attempt
+    trackEvent("sign_up_attempted", {
+      email_domain: email.split("@")[1],
+      has_name: !!name,
+    })
 
     // Mock authentication
     setTimeout(() => {
@@ -35,6 +46,21 @@ export default function SignUpPage() {
       }
 
       setUser(mockUser)
+      
+      // Identify user in Journium for tracking
+      identify(mockUser.id, {
+        name: mockUser.name,
+        email: mockUser.email,
+        plan: mockUser.plan,
+        created_at: mockUser.createdAt,
+      })
+      
+      // Track successful sign up
+      trackEvent("sign_up_completed", {
+        user_id: mockUser.id,
+        plan: mockUser.plan,
+      })
+      
       toast.success("Account created successfully!")
 
       setIsLoading(false)

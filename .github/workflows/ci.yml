@@ -46,5 +46,7 @@ jobs:
         run: pnpm lint
 
       - name: Build project
+        env:
+          NEXT_PUBLIC_JOURNIUM_PUBLISHABLE_KEY: ${{ vars.JOURNIUM_PUBLISHABLE_KEY || 'your_journium_publishable_key_here' }}
         run: pnpm build
 
